@@ -1,20 +1,40 @@
 package IntroToArrayLists;
 
+import java.util.ArrayList;
+
 public class IntroToArrayLists {
 	public static void main(String[] args) {
-		//1. Create an array list of Strings
-		//   Don't forget to import the ArrayList class
+		System.out.println("Here's an ArrayList of Strings:\n");
+		ArrayList<String> string = new ArrayList<String>();
 		
-		//2. Add five Strings to your list
+		string.add("Mediocre");
+		string.add("Exuberant");
+		string.add("Exuberance");
+		string.add("Mediocrity");
+		string.add("Blah Blah Blah");
 		
-		//3. Print all the Strings using a standard for-loop
-		
-		//4. Print all the Strings using a for-each loop
-		
-		//5. Print only the even numbered elements in the list.
-		
-		//6. Print all the Strings in reverse order.
-		
-		//7. Print only the Strings that have the letter 'e' in them.
+		for(int i = 0; i < string.size(); i++){
+			String s = string.get(i);
+			System.out.println(s);
+		}
+		for (String s: string) {
+			System.out.println(s);
+		}
+		System.out.println("Every other");
+		for (int i = 0; i < string.size(); i+=2) {
+			String s = string.get(i);
+			System.out.println(s);
+		}
+		System.out.println("Reverse order");
+		for (int i = string.size() - 1; i >= 0; i--) {
+			System.out.println(string.get(i));
+		}
+		System.out.println("With letter e");
+		for (int i = 0; i < string.size(); i++) {
+			String s = string.get(i);
+			if (s.contains("e")) {
+				System.out.println(s);
+			}
+		}
 	}
 }
