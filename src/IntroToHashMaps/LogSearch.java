@@ -1,6 +1,15 @@
 package IntroToHashMaps;
 
-public class LogSearch {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class LogSearch implements ActionListener {
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -28,4 +37,66 @@ public class LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+	JPanel panel = new JPanel();
+	JFrame frame = new JFrame();
+	JButton add = new JButton();
+	JButton search = new JButton();
+	JButton view = new JButton();
+	JButton remove = new JButton();
+	String output;
+	HashMap<Integer, String> idHash = new HashMap<Integer, String>();
+	public static void main(String[] args) {
+		LogSearch ls = new LogSearch();
+		ls.createGui();
+	}
+	void createGui() {
+		panel.add(add);
+		panel.add(search);
+		panel.add(view);
+		panel.add(remove);
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.setSize(100, 200);
+		add.setText("Add");
+		add.addActionListener(this);
+		search.setText("Search");
+		search.addActionListener(this);
+		view.setText("View");
+		view.addActionListener(this);
+		remove.setText("Remove");
+		remove.addActionListener(this);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		output = "";
+		// TODO Auto-generated method stub
+		if (e.getSource() == add) {
+			String id = JOptionPane.showInputDialog("Enter a id: ");
+			String name = JOptionPane.showInputDialog("Enter a name: ");
+			idHash.put(Integer.parseInt(id), name);
+		}
+		else if (e.getSource() == view) {
+			for (String name: idHash.values()) {
+				output += name;
+				output += "\n";
+			}
+			JOptionPane.showMessageDialog(null, output);
+		}
+		else if (e.getSource() == search) {
+			String id = JOptionPane.showInputDialog("Enter an id: ");
+			for (int f_id: idHash.keySet()) {
+				if (f_id == Integer.parseInt(id)) {
+					JOptionPane.showMessageDialog(null, idHash.get(f_id));
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "That id doesn't exist");
+				}
+			}
+		}
+		else if (e.getSource() == remove) {
+			String id = JOptionPane.showInputDialog("Enter and id to remove: ");
+			idHash.remove(Integer.parseInt(id));
+		}
+	}
+		
 }
