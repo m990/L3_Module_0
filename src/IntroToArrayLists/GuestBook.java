@@ -48,8 +48,13 @@ public class GuestBook implements ActionListener {
 			name.add(newName);
 		}
 		else if (e.getSource() == viewButton) {
+			String output = "";
 			System.out.println("View button pressed");
-			JOptionPane.showMessageDialog(null, name);
+			for (String n_name: name) {
+				output += "Guest #" + name.indexOf(n_name) + ": " +n_name;
+				output += "\n";
+			}
+			JOptionPane.showMessageDialog(null, output);
 		}
 	}
 }
